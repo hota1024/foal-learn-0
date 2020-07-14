@@ -5,4 +5,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 export class Todo {
   @PrimaryGeneratedColumn()
   id: number
+
+  @Column()
+  text: string
 }
