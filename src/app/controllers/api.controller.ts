@@ -24,4 +24,19 @@ export class ApiController {
 
     return new HttpResponseOK(todo)
   }
+
+  @Delete('/todos/:id')
+  async deleteTodo(ctx: Context) {
+    const todo = await getRepository(Todo).findOne({
+      id: +ctx.request.params.id
+    })
+
+    if (!todo) {
+      return new HttpResponseNotFound()
+    }
+
+    await getRepository(Todo).remove(todo)
+
+    return new HttpResponseNoContent()
+  }
 }
